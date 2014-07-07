@@ -1,0 +1,26 @@
+<div >
+    <states>
+        <state name="sidebaropen"></state>
+    </states>
+
+    <div class="myContainer">
+        <div class="sidebarSmallScreen" class.sidebaropen="sidebarSmallScreen open">
+            <div class="logo">
+                <h1>Randi Boyd</h1>
+                <h2>UX Engineer</h2>
+            </div>
+            <ul id="mainMenu" comp="List" class="menu" item_renderer="app.MenuItemRenderer"></ul>
+        </div>
+            <!-- this is for emulating position fixed of the nav -->
+
+
+        <div id="sectionContainer" class="sectionContainerSmallScreen" class.sidebaropen="sectionContainerSmallScreen open" comp="app.SectionContainer" skin_class="app.SectionContainerSkinSmall"></div>
+
+
+        <i id="hamburger" class="fa fa-bars fa-lg hamburger" class.sidebaropen="fa fa-long-arrow-left fa-lg hamburger" ></i>
+    </div>
+
+
+
+
+</div>
