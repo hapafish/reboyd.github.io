@@ -14,8 +14,15 @@
             <!-- this is for emulating position fixed of the nav -->
 
 
-        <div id="sectionContainer" class="sectionContainerSmallScreen" class.sidebaropen="sectionContainerSmallScreen open" comp="app.SectionContainer" skin_class="app.SectionContainerSkinSmall"></div>
+        <div class="sectionContainerWrapper" class.sidebaropen="sectionContainerWrapper open">
+            <div id="sectionHeaderGroup" class="sectionHeader">
 
+                <h1 class="sectionHeaderLabel" id="sectionHeaderLabel"></h1>
+
+            </div>
+            <div id="sectionContainer" class="sectionContainerSmallScreen" comp="app.SectionContainer" skin_class="app.SectionContainerSkinSmall"></div>
+
+        </div>
 
         <i id="hamburger" class="fa fa-bars fa-lg hamburger" class.sidebaropen="fa fa-long-arrow-left fa-lg hamburger" ></i>
     </div>

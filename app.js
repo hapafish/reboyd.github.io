@@ -29,13 +29,16 @@ $r.Application("profileWebsite", function(){
             handleHamburgerClicked = this.bind(handleHamburgerClickedFn),
             handleResize = this.bind(handleResizeFn),
             toggleOpenState = this.bind(toggleOpenStateFn),
-            handleSectionContainerClicked = this.bind(handleSectionContainerClickedFn)
+            handleSectionContainerClicked = this.bind(handleSectionContainerClickedFn),
+            locationHashChanged = this.bind(locationHashChangedFn)
 
     this.mainMenu = null;
     this.sectionContainer = null;
     this.hamburger = null;
+    this.sectionHeaderLabel = null;
 
     this.skinParts = [{id:"mainMenu", required:false},
+        {id:"sectionHeaderLabel", required:false},
         {id:"sectionContainer", required:false},
         {id:"hamburger", required:false}];
 
@@ -54,7 +57,10 @@ $r.Application("profileWebsite", function(){
         if(_selectedMenuItem === null)
         {
             _selectedMenuItem = menuDataProvider[0];
+            window.location.hash = _selectedMenuItem.hash;
         }
+
+        window.onhashchange = this.bind(locationHashChanged, this);
 
 
     }
@@ -97,7 +103,29 @@ $r.Application("profileWebsite", function(){
                this.hamburger.addEventListener("click", handleHamburgerClicked)
         }
 
+        if(instance === this.sectionHeaderLabel)
+        {
+            if(_selectedMenuItem)
+            {
+                this.sectionHeaderLabel.textContent = _selectedMenuItem.label;
+            }
+        }
 
+
+    }
+
+    function locationHashChangedFn(){
+
+        if(_selectedMenuItem && _selectedMenuItem.hash !== window.location.hash)
+        {
+           var tempSelectedMenuItem =  getSelectedMenuItemBasedOnHash(window.location.hash);
+
+            if(tempSelectedMenuItem !== null)
+            {
+                this.mainMenu.selectedItem = tempSelectedMenuItem;
+                handleMenuSelectionChanged();
+            }
+        }
     }
 
     function handleSectionContainerClickedFn(event){
@@ -130,6 +158,11 @@ $r.Application("profileWebsite", function(){
         {
             this.currentState = "";
         }
+
+        if(this.sectionHeaderLabel && _selectedMenuItem)
+            this.sectionHeaderLabel.textContent = _selectedMenuItem.label;
+
+        window.location.hash = _selectedMenuItem.hash;
 
     }
 
