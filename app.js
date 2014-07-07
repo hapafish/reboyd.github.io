@@ -87,10 +87,11 @@ $r.Application("profileWebsite", function(){
         {
             this.sectionContainer.menuDataProvider = new $r.Collection(menuDataProvider);
             this.sectionContainer.selectedMenuItem = _selectedMenuItem;
-            if(isTouchDevice)
+            //removing fast click untill an efficient solution is figured out.
+/*            if(isTouchDevice)
                 this.sectionContainer.addEventListener("touchstart", handleSectionContainerClicked)
-            else
-                this.sectionContainer.addEventListener("click", handleSectionContainerClicked)
+            else*/
+            this.sectionContainer.addEventListener("click", handleSectionContainerClicked)
         }
 
         if(instance === this.hamburger)
